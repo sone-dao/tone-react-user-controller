@@ -9,6 +9,11 @@ interface IUser {
   friends: string[]
   subscribedTo: string[]
   balance: number
+  roles?: {
+    admin?: string
+    owner?: string[]
+    maintainer?: string[]
+  }
   isLoggedIn: boolean
 }
 
@@ -19,6 +24,7 @@ const userDefaults = {
   friends: [],
   subscribedTo: [],
   balance: 0,
+  roles: {},
   isLoggedIn: false,
 }
 
@@ -93,8 +99,15 @@ const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
     const api = useToneApi()
     const data = await api.user.get().catch((error) => console.log(error))
 
-    const { userId, display, playlists, friends, subscribedTo, balance } =
-      data.user
+    const {
+      userId,
+      display,
+      playlists,
+      friends,
+      subscribedTo,
+      balance,
+      roles,
+    } = data.user
 
     setUser({
       userId,
@@ -104,6 +117,7 @@ const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
       subscribedTo,
       balance,
       isLoggedIn: true,
+      roles,
     })
   }
 
