@@ -1,6 +1,6 @@
 {
   "name": "@sone-dao/tone-react-user-context",
-  "version": "0.23.1",
+  "version": "0.1.0",
   "repository": "https://github.com/sone-dao/tone-react-user-context.git",
   "license": "MIT",
   "scripts": {
