@@ -1,8 +1,9 @@
+import { pub, sub } from '@sone-dao/sone-react-utils'
 import useToneApi from '@sone-dao/tone-react-api'
 import { useRouter } from 'next/router'
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-interface IUser {
+export interface IUser {
   userId: string
   display: string
   playlists: string[]
@@ -17,7 +18,7 @@ interface IUser {
   isLoggedIn: boolean
 }
 
-const userDefaults = {
+export const userDefaults = {
   userId: '',
   display: '',
   playlists: [],
@@ -28,28 +29,19 @@ const userDefaults = {
   isLoggedIn: false,
 }
 
-interface IUserContext {
-  user: IUser
-  setUser: Function
-}
-
-const userContextDefaults: IUserContext = {
-  user: userDefaults,
-  setUser: () => {},
-}
-
-const UserContext = createContext<IUserContext>(userContextDefaults)
-
-export const useUserContext = () => useContext(UserContext)
-
-interface IUserProviderProps {
+interface IUserControllerProps {
   children: React.ReactNode
 }
 
-const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
+const UserController: React.FC<IUserControllerProps> = ({ children }) => {
   const [user, setUser] = useState<IUser>(userDefaults)
 
   const router = useRouter()
+
+  useEffect(() => {
+    sub('__TONE_USER__', 'set', (user: IUser) => setUser(user))
+    sub('__TONE_USER__', 'get', () => pub('__TONE_USER__', 'set', user))
+  }, [])
 
   useEffect(() => {
     if (!user.userId && localStorage.getItem('tone.session')) {
@@ -60,15 +52,7 @@ const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
     }
   }, [router])
 
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-
-  return (
-    <UserContext.Provider value={{ user, setUser }}>
-      {children}
-    </UserContext.Provider>
-  )
+  return <>{children}</>
 
   async function checkToken() {
     const sessionToken = localStorage.getItem('tone.session') || null
@@ -109,7 +93,7 @@ const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
       roles,
     } = data.user
 
-    setUser({
+    pub('__TONE_USER__', 'set', {
       userId,
       display,
       playlists,
@@ -122,8 +106,8 @@ const UserProvider: React.FC<IUserProviderProps> = ({ children }) => {
   }
 
   function logoutUser() {
-    setUser({ ...user, isLoggedIn: false })
+    pub('__TONE_USER__', 'set', { ...user, isLoggedIn: false })
   }
 }
 
-export default UserProvider
+export default UserController

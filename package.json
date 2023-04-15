@@ -1,7 +1,7 @@
 {
-  "name": "@sone-dao/tone-react-user-context",
+  "name": "@sone-dao/tone-react-user-controller",
   "version": "0.2.2",
-  "repository": "https://github.com/sone-dao/tone-react-user-context.git",
+  "repository": "https://github.com/sone-dao/tone-react-user-controller.git",
   "license": "MIT",
   "scripts": {
     "build": "rollup -c",
@@ -28,6 +28,8 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
+    "@sone-dao/sone-react-utils": "^1.0.0",
+    "@sone-dao/tone-react-api": "^0.1.0",
     "next": "^13.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -37,8 +39,5 @@
   ],
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
-  "dependencies": {
-    "@sone-dao/tone-react-api": "^0.1.0"
-  }
+  "types": "dist/index.d.ts"
 }

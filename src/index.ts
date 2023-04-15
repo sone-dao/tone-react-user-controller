@@ -1,4 +1,5 @@
-import UserProvider, { useUserContext } from './UserContext'
+import UserController from './UserController'
+import useUserData from './useUserData'
 
-export { useUserContext }
-export default UserProvider
+export { useUserData }
+export default UserController
