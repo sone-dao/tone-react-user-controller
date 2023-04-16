@@ -7,9 +7,7 @@
     "build": "rollup -c",
     "dev": "node ./dev.js"
   },
-  "dependencies": {
-    "@sone-dao/sone-react-utils": "^1.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
@@ -32,6 +30,7 @@
   },
   "peerDependencies": {
     "@sone-dao/tone-react-api": "^0.1.0",
+    "@sone-dao/sone-react-utils": "^1.0.0",
     "next": "^13.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
