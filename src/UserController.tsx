@@ -46,7 +46,6 @@ const UserController: React.FC<IUserControllerProps> = ({ children }) => {
   useEffect(() => {
     if (!user.userId && localStorage.getItem('tone.session')) {
       // Assumes the user just dropped onto the page for the first time
-      checkToken()
       authUser()
     } else {
       checkToken()
@@ -81,6 +80,8 @@ const UserController: React.FC<IUserControllerProps> = ({ children }) => {
   }
 
   async function authUser() {
+    await checkToken()
+
     const api = useToneApi()
     const data = await api.user.get().catch((error) => console.log(error))
 
