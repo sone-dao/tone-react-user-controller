@@ -46,6 +46,7 @@ const UserController: React.FC<IUserControllerProps> = ({ children }) => {
   useEffect(() => {
     if (!user.userId && localStorage.getItem('tone.session')) {
       // Assumes the user just dropped onto the page for the first time
+      checkToken()
       authUser()
     } else {
       checkToken()
