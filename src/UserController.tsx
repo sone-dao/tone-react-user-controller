@@ -59,7 +59,7 @@ const UserController: React.FC<IUserControllerProps> = ({ children }) => {
 
     if (!sessionToken) return logoutUser()
 
-    await fetch('https://api.tone.audio/auth/token', {
+    await fetch('https://auth.tone.audio/token', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${sessionToken}`,
