@@ -1,6 +1,6 @@
 {
   "name": "@sone-dao/tone-react-user-controller",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "repository": "https://github.com/sone-dao/tone-react-user-controller.git",
   "license": "MIT",
   "scripts": {
