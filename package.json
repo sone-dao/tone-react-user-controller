@@ -4,7 +4,7 @@
   "main": "dist/cjs/src/index.js",
   "module": "dist/esm/src/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/sone-dao/tone-template-react.git",
+  "repository": "https://github.com/sone-dao/tone-react-user-controller.git",
   "author": "Sone DAO <dev@sone.works>",
   "license": "MIT",
   "scripts": {
