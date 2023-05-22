@@ -1,6 +1,8 @@
+'use client'
+
 import { pub, sub } from '@sone-dao/sone-react-utils'
 import useToneApi from '@sone-dao/tone-react-api'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 export interface IUser {
@@ -33,7 +35,7 @@ interface IUserControllerProps {
   children: React.ReactNode
 }
 
-const UserController: React.FC<IUserControllerProps> = ({ children }) => {
+export default function UserController({ children }: IUserControllerProps) {
   const [user, setUser] = useState<IUser>(userDefaults)
 
   const router = useRouter()
@@ -111,5 +113,3 @@ const UserController: React.FC<IUserControllerProps> = ({ children }) => {
     pub('__TONE_USER__', 'set', { ...user, isLoggedIn: false })
   }
 }
-
-export default UserController

@@ -1,3 +1,5 @@
+'use client'
+
 import { pub, sub, unsub } from '@sone-dao/sone-react-utils'
 import { useEffect, useState } from 'react'
 import { IUser, userDefaults } from './UserController'
